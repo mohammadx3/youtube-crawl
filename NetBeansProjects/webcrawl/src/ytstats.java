@@ -127,7 +127,7 @@ twlogic=true;
 if (curItem.contains("Subscriber"))
 {
 int subloc = postw+2;
-twviews = result.get(subloc).toString().replaceAll("views", "");
+subviews = result.get(subloc).toString().replaceAll("views", "");
 StringBuffer sb = new StringBuffer (subviews);
 sb = sb.delete(0,40);
 subviews = sb.toString();

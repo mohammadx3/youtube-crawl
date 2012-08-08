@@ -29,7 +29,7 @@ public static String twviews;
 public static long fbv;
 public static long mobv;
 public static long twv;
-public static long k=0;
+public static long k;
 public static boolean fblogic = false;
 public static boolean twlogic = false;
 public static boolean moblogic = false;
@@ -38,7 +38,10 @@ public static String strTemp="";
     * @param args the command line arguments
     */
     public static void fbview(String VideoID) throws IOException, BadLocationException  {
-       
+        k=0;       
+        fbv =0;
+               twv = 0;
+               mobv = 0;
     URL my_url = new URL("http://www.youtube.com/insight_ajax?action_get_statistics_and_data=1&v="+VideoID);
     HTMLEditorKit kit = new HTMLEditorKit();
     HTMLDocument doc = (HTMLDocument) kit.createDefaultDocument();
@@ -118,10 +121,8 @@ mobv = Long.parseLong(mobviews);
 System.out.println("Mobile Views:"+mobv);
 moblogic=true;
 }
-
-
 }
-
+System.out.println("Actual k:"+k);
 if(fblogic==false){
     fbv = 0;
 }
