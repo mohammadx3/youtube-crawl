@@ -40,9 +40,9 @@ public static String strTemp="";
     /**
     * @param args the command line arguments
     */
-    public static void dystats(String videoID) throws IOException, BadLocationException  {
+    public static void main(String args[]) throws IOException, BadLocationException  {
        
-    URL my_url = new URL("http://www.youtube.com/insight_ajax?action_get_statistics_and_data=1&v="+videoID);
+    URL my_url = new URL("http://www.youtube.com/insight_ajax?action_get_statistics_and_data=1&v=K_kp2UgezLU");
     HTMLEditorKit kit = new HTMLEditorKit();
     HTMLDocument doc = (HTMLDocument) kit.createDefaultDocument();
     doc.putProperty("IgnoreCharsetDirective", Boolean.TRUE);
@@ -83,7 +83,8 @@ while ( iter.hasNext() == true )
      posfb=posfb+1;
      postw=postw+1;
  curItem =(String) iter .next();
-if (curItem.contains("facebook"))
+//System.out.println(curItem);
+ if (curItem.contains("facebook"))
 {
 int fbvloc = posfb+3;
 fbviews = result.get(fbvloc).toString().replaceAll("views", "");
@@ -99,7 +100,8 @@ fblogic=true;
 }
 if (curItem.contains("mobile"))
 {
-int mobloc = posmob+2;
+int mobloc = posmob+3;
+//System.out.println("MOB LOC"+result.get(posmob+3));
 mobviews = result.get(mobloc).toString().replaceAll("views", "");
 StringBuffer sb = new StringBuffer (mobviews);
 sb = sb.delete(0,40);
@@ -113,7 +115,8 @@ moblogic=true;
 
 if (curItem.contains("twitter"))
 {
-int twloc = postw+2;
+int twloc = postw+3;
+System.out.println(result.get(twloc));
 twviews = result.get(twloc).toString().replaceAll("views", "");
 StringBuffer sb = new StringBuffer (twviews);
 sb = sb.delete(0,40);
@@ -126,7 +129,7 @@ twlogic=true;
 }
 if (curItem.contains("Subscriber"))
 {
-int subloc = postw+2;
+int subloc = postw+3;
 subviews = result.get(subloc).toString().replaceAll("views", "");
 StringBuffer sb = new StringBuffer (subviews);
 sb = sb.delete(0,40);

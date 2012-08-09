@@ -110,7 +110,7 @@ twlogic=true;
 }
 if (curItem.contains("mobile"))
 {
-int mobloc = posmob+2;
+int mobloc = posmob+3;
 mobviews = result.get(mobloc).toString().replaceAll("views", "");
 StringBuffer sb = new StringBuffer (mobviews);
 sb = sb.delete(0,40);
