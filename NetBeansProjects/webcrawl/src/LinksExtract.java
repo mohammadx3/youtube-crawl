@@ -41,16 +41,20 @@ public static long mobviews = 0;
 public static long viewcount = 0;
 public static long nLikes = 0;
 public static long nDislikes = 0;
-
+public static String uploader;
+public static String category;
+public static String uploadDate;
 
 
   public static void main(String[] args) throws Exception{
- String link2crawl = "http://www.youtube.com/watch?v=W2Cv5hZfOmk&feature=relmfu";
-visitLinks(link2crawl);
+ String link2crawl = "http://www.youtube.com/watch?v=fipF4c-lGuc&feature=g-vrec";
+
+ visitLinks(link2crawl);
 getLinksDB();
         
   }
 
+  
   private static String RetrieveVideoId(String site) {
        String ytreplace = "http://www.youtube.com/watch";
 ytreplace = site.replaceAll(ytreplace+"\\?v=","");
@@ -77,14 +81,14 @@ String clientId="Mohammad";
 String developerkey = "AI39si62bwLP6OjQs0znOXEmrXCzEPhasnvzg_PcP8AaogxM-FhJjHDg7UOYZ9hgSr_9Z74ySKeGomoJF7IPjEAcV2c14fhvfw";
 YouTubeService service = new YouTubeService(clientId , developerkey);
 service.setUserCredentials("mohammadx3@gmail.com", "ninjagaidensx3");
-
+try{
     
     String VideoID = RetrieveVideoId(site);
     List<String> links = LinksExtract.extractLinks(site);
     for (String link : links) {
            if(link.contains("watch?v")&&!link.contains(site))
         {
-            VideoID = RetrieveVideoId(link);
+            VideoID = RetrieveVideoId(link);   //Retrieves VideoID from the video links of the video crawled
             String videoEntryUrl = "http://gdata.youtube.com/feeds/api/videos/"+VideoID;
 VideoEntry videoEntry = service.getEntry(new URL(videoEntryUrl), VideoEntry.class);
  Rating rating = videoEntry.getRating();
@@ -95,14 +99,18 @@ YtStatistics stats = videoEntry.getStatistics();
             {
             if(stats != null && stats.getViewCount()>100000 ) {
              FBViews.fbview(VideoID);
-             fbviews = FBViews.fbv;
+             UploaderDetails.getDetails(VideoID);
+             fbviews = FBViews.k;
              mobviews = FBViews.mobv;
              twviews = FBViews.twv;
              viewcount = stats.getViewCount();
              avgRating = rating.getAverage();
              nLikes = ytrating.getNumLikes();
              nDislikes = ytrating.getNumDislikes();
-  
+             uploader  = UploaderDetails.UserName;
+             category = UploaderDetails.Category;
+             uploadDate = UploaderDetails.uploadDate;
+             
              
              String title =  videoEntry.getTitle().getPlainText();    
          try{
@@ -110,16 +118,18 @@ YtStatistics stats = videoEntry.getStatistics();
                   Connection con =  DriverManager.getConnection("jdbc:mysql://localhost/linkdb","root","password");
     Statement stat = (Statement) con.createStatement();
     
-    String insert = "Insert into links(title,vidid,totalViews,fbviews,mobviews,twviews,avgRating,nLikes,nDisLikes) values('"+title+"','"+VideoID+"','"+viewcount+"','"+fbviews+"','"+mobviews+"','"+twviews+"','"+avgRating+"','"+nLikes+"','"+nDislikes+"')";
+    String insert = "Insert into links(title,vidid,totalViews,fbviews,mobviews,twviews,avgRating,nLikes,nDisLikes,uploader,category,uploadDate) values('"+title+"','"+VideoID+"','"+viewcount+"','"+fbviews+"','"+mobviews+"','"+twviews+"','"+avgRating+"','"+nLikes+"','"+nDislikes+"','"+uploader+"','"+category+"','"+uploadDate+"')";
     stat.executeUpdate(insert);
     
     }catch(Exception E){}
-          
+            }     
               System.out.println("   "+videoEntry.getTitle().getPlainText()+"\n"+link+"  View count: " + stats.getViewCount());
             }
           
       }
             }   
+          }catch(Exception ex) {     //When GET request fails
+          System.out.println("Null Pointer Exception:Unable to get the values");
           }
 }
 
@@ -129,7 +139,7 @@ try{
     Connection con =  DriverManager.getConnection("jdbc:mysql://localhost/linkdb","root","password");
     Statement stat = (Statement) con.createStatement();
     
-    String getvidID = "Select vidid from links ORDER by id";
+    String getvidID = "Select vidid from links ORDER by id DESC";
     ResultSet vidID =  stat.executeQuery(getvidID);
     while(vidID.next()){
        
@@ -137,7 +147,7 @@ try{
       System.out.println("New Crawl "+dbLink);
     visitLinks(dbLink);
     }
-  getLinksDB();
+  getLinksDB(); //Recursion
 }catch(Exception ex){}
 }
 }

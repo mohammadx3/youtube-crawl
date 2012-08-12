@@ -42,7 +42,7 @@ public static String strTemp="";
     */
     public static void main(String args[]) throws IOException, BadLocationException  {
        
-    URL my_url = new URL("http://www.youtube.com/insight_ajax?action_get_statistics_and_data=1&v=K_kp2UgezLU");
+    URL my_url = new URL("http://www.youtube.com/insight_ajax?action_get_statistics_and_data=1&v=mlGxBDRDRH0");
     HTMLEditorKit kit = new HTMLEditorKit();
     HTMLDocument doc = (HTMLDocument) kit.createDefaultDocument();
     doc.putProperty("IgnoreCharsetDirective", Boolean.TRUE);

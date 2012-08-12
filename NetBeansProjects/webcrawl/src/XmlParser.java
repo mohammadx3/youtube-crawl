@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import javax.swing.text.BadLocationException;
@@ -20,28 +21,51 @@ import org.jsoup.Jsoup;
 public class XmlParser {
    public static void main(String args[]) throws IOException, BadLocationException{
 
-URL urlLink = new URL("http://www.youtube.com/insight_ajax?action_get_statistics_and_data=1&v=WKXZGlTM2OM");
-String site = urlLink.toString();    
-HTMLEditorKit kit = new HTMLEditorKit();
-       
-    HTMLDocument doc = (HTMLDocument) kit.createDefaultDocument();
-    doc.putProperty("IgnoreCharsetDirective", Boolean.TRUE);
-    Reader HTMLReader = new InputStreamReader(urlLink.openConnection().getInputStream());
-    kit.read(HTMLReader, doc, 0);  
-
-    BufferedReader br = new BufferedReader(new InputStreamReader(urlLink.openStream()));
-            String strTemp = "";
-            while(null != (strTemp = br.readLine())){
+//try{
+    //        URL my_url2 = new URL("https://www.youtube.com/profile?user="+UserName);
+    HTMLEditorKit kit2 = new HTMLEditorKit();
+    HTMLDocument doc2 = (HTMLDocument) kit2.createDefaultDocument();
+    doc2.putProperty("IgnoreCharsetDirective", Boolean.TRUE);
+   // Reader HTMLReader2 = new InputStreamReader(my_url2.openConnection().getInputStream());
+   // kit2.read(HTMLReader2, doc, 0);
+    String title2 = (String) doc2.getProperty(javax.swing.text.Document.TitleProperty);
+    System.out.println(title2);
+     final ArrayList<String> result2 = new ArrayList<String>();   
+     //   try {
+  //       BufferedReader br2 = new BufferedReader(new InputStreamReader(my_url2.openStream()));
         
-        Scanner scan = new Scanner(strTemp); 
-       StringBuffer sb = new StringBuffer(strTemp);
-        String html = sb.toString();
-        String tableTag = 
-     Pattern.compile(".*?<dd.*?event.*?>(.*?)</dd>.*?", Pattern.DOTALL).matcher(strTemp).replaceFirst("$1");
+        String strTemp2 = "";
 
-String charSet = "ISO-8859-1";
-String innerHtml = Jsoup.parse(scan.toString(),charSet).select("body").html().toString();
-System.out.println(tableTag);
-}
-}
-}
+       //  while(null != (strTemp2 = br2.readLine())){
+      
+             result2.add(strTemp2);
+         }
+        }
+         
+     //    catch (Exception ex) {
+    //        ex.printStackTrace();
+        
+ //  }catch(Exception e){
+    // e.printStackTrace();
+ //  }
+  //  try{  
+//Iterator  iter2 = result.iterator();
+//String curItem2="";
+//int posSubscribers = 0;
+
+//Thread.sleep(1000);
+//while ( iter2.hasNext() == true ) {
+     
+//curItem2 =(String) iter2 .next();
+//posSubscribers++;
+///if(curItem2.contains("subscribers")){
+   
+//System.out.println("Subscribers:"+result.get(posSubscribers-1));
+   
+    
+//}
+ 
+ // }
+//catch(Exception ex){}
+    
+//}

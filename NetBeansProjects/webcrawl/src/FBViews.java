@@ -26,6 +26,8 @@ public class FBViews {
 public static String fbviews;
 public static String mobviews;
 public static String twviews;
+public static String mobUpload;
+public static String fbUpload;
 public static long fbv;
 public static long mobv;
 public static long twv;
@@ -70,7 +72,7 @@ public static String strTemp="";
             ex.printStackTrace();
         }
         
-      
+    try{  
 Iterator  iter = result.iterator();
 String curItem="";
 int posfb=0;
@@ -87,6 +89,7 @@ int fbvloc = posfb+3;
 fbviews = result.get(fbvloc).toString().replaceAll("views", "");
 StringBuffer sb = new StringBuffer (fbviews);
 sb = sb.delete(0,40);
+fbUpload = fbviews;
 fbviews = sb.toString();
 fbviews = fbviews.replaceAll(",", "");
 fbviews = fbviews.replaceAll("\\s+", "");
@@ -133,7 +136,10 @@ if(twlogic==false){
 if(moblogic==false){
     mobv=0;
 }
- 
+    }
+    catch(Exception ex){
+    System.out.println("Error Getting FBViews");
+    }
     }
 
 }
