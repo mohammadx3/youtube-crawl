@@ -73,7 +73,7 @@ int posDate = 0;
 int posCategory = 0;
 int length = 0;
 UserName = "";
-Thread.sleep(500);
+
 while ( iter.hasNext() == true ) {
       posUser++;
       posDate++;

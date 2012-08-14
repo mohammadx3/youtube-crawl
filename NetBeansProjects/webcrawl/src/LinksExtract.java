@@ -47,7 +47,7 @@ public static String uploadDate;
 
 
   public static void main(String[] args) throws Exception{
- String link2crawl = "http://www.youtube.com/watch?v=fipF4c-lGuc&feature=g-vrec";
+ String link2crawl = "http://www.youtube.com/watch?v=Xujhimh5eWs&feature=fvwrel";
 
  visitLinks(link2crawl);
 getLinksDB();
