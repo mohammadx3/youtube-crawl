@@ -80,7 +80,7 @@ public static void visitLinks(String site) throws AuthenticationException, IOExc
 String clientId="Mohammad";
 String developerkey = "AI39si62bwLP6OjQs0znOXEmrXCzEPhasnvzg_PcP8AaogxM-FhJjHDg7UOYZ9hgSr_9Z74ySKeGomoJF7IPjEAcV2c14fhvfw";
 YouTubeService service = new YouTubeService(clientId , developerkey);
-service.setUserCredentials("mohammadx3@gmail.com", "ninjagaidensx3");
+service.setUserCredentials("mohammadx3@gmail.com", "**************");
 try{
     
     String VideoID = RetrieveVideoId(site);
