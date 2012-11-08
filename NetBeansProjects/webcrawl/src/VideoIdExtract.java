@@ -37,7 +37,7 @@ String site = "http://www.youtube.com/watch?v=W2Cv5hZfOmk&feature=relmfu";
 String clientId="Mohammad";
 String developerkey = "AI39si62bwLP6OjQs0znOXEmrXCzEPhasnvzg_PcP8AaogxM-FhJjHDg7UOYZ9hgSr_9Z74ySKeGomoJF7IPjEAcV2c14fhvfw";
 YouTubeService service = new YouTubeService(clientId , developerkey);
-service.setUserCredentials("mohammadx3@gmail.com", "ninjagaidensx3");
+service.setUserCredentials("mohammadx3@gmail.com", "**************");
 
     
     String VideoID = RetrieveVideoId(site);
